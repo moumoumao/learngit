@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+.wel-login-title {
+    height: 50px;
+    line-height: 50px;
+    font-size: 26px;
+    color: #FFF;
+    background-color: #8EC172;
+	margin-bottom:25px;
+}
+.left{
+	width:60%;
+	border-right: 1px solid #E3E3E3;
+	float:left;
+}
+.right{
+	width:30%;
+	float:left;
+}
+.user_img{
+	background:url(../img/user.png);
+}
+.pwd_img{
+	background:url(../img/pwd.png);
+}
+.show_div{
+	width: 700px;
+	height: 180px;
+    text-align: center;
+    margin: 5px auto;
+}
+#bt_sub{
+	color: #FFF;
+    background-color: #8EC172;
+    font-size: 16px;
+    margin-top: 25px;
+	width:80px;
+	height:30px;
+	line-height: 30px;
+	margin-left: 80px;
+	cursor:pointer;
+}
+#error{
+	color: red;
+	font-size: 16px;
+	text-align: center;
+}

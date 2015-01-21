@@ -1,0 +1,74 @@
+@CHARSET "UTF-8";
+#container {
+    width: 100%;
+}
+body {
+    color: #333;
+    font-family: Arial,"宋体",Helvetica,sans-serif;
+    font-size: 12px;
+    margin:0px;
+    padding:0px;
+}
+#content {
+	width: 100%;
+    background: url("/CQRental/img/userBg.jpg") no-repeat scroll 0px 0px transparent;
+    font-family: "Microsoft YaHei","微软雅黑",tahoma,arial,simhei;
+    margin:0px;
+    padding:0px;
+    height: 480px;
+    border:1px solid  #8EC172;
+}
+.log-title{
+	
+	border-bottom:2px solid  #8EC172;
+}
+.log-title div{
+	color: #62AB00;
+	font-family: "Microsoft YaHei","微软雅黑",tahoma,arial,simhei;
+	font-size: 30px;
+	font-weight: bolder;
+	margin-left: 50px;
+	}
+	
+.input_box{
+	margin-top:25px;
+	text-align:left;
+}
+.input_all{
+	border:1px solid #ccc;
+	height:35px;
+	width:260px;
+	font-size:16px;
+	border-left:0;
+	padding-left:20px;
+}
+.input_box em{
+	clear:both;
+	width:35px;
+	height:37px;
+	display:block;
+	float:left;
+	margin-left:50px;
+	
+}
+ul,li{
+	margin:0px;
+	padding:0px;
+	}
+li{
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	font-size:12px;
+	list-style:none;
+	border-bottom: #CCC 1px dashed;
+}
+a{
+	text-decoration:none;
+	color:#000;
+}
+.system_controller{
+		position:absolute;
+		right:20px;	
+		top:18px;
+	}
