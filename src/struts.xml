@@ -46,6 +46,9 @@
 		 <action name="user" class="manage.action.UserAction" >
         	 <result name="success">/login.jsp</result>
         </action>
+        <action name="agency" class="manage.action.AgencyAction" >
+        	 <result name="success">/manage/agency.jsp</result>
+        </action>
 	</package>
 	
 </struts>

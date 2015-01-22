@@ -12,15 +12,6 @@
 <link rel="stylesheet" href="/JinmengWeb22/js/themes/icon.css" type="text/css"></link>
 <title>首页</title>
 <script type="text/javascript">
-$(function(){
-	/*alert('123');
-	$.messager.confirm('确认','您确认想要删除记录吗？',function(r){    
-	    if (r){    
-	        alert('确认删除');    
-	    }    
-	}); 
-	$.messager.alert('警告','警告消息'); */
-});
 function addTab(t,url){
 	if($("#tab").tabs("exists",t)){
 		$("#tab").tabs("select",t);
@@ -122,7 +113,7 @@ function addTab(t,url){
          <!-- 系统设置-->
         <div data-options="title:'系统设置',iconCls:'icon-cus-limit'">
            		 <ul>
-                    <li><a href="javascript:addTab('机构管理','')">机构管理</a> </li>
+                    <li><a href="javascript:addTab('机构管理','/JinmengWeb22/manage/agency.jsp')">机构管理</a> </li>
                     <li><a href="javascript:addTab('部门管理','')">部门管理</a> </li>
                     <li><a href="javascript:addTab('权限管理','')">权限管理</a> </li>
                 </ul>  
