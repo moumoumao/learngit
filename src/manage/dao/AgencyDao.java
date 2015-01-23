@@ -32,9 +32,12 @@ public interface AgencyDao {
 	@Arguments({"agencyId"})
 	public int deleteAgency(int agencyId); 
 	/**
-	 * 查找所有的机构信息
+	 * 根据机构名和机构城市查找部门（模糊查询，组合查询）
+	 * @param AgencyName 机构名称
+	 * @param AgencyCity 机构所属城市
 	 * @return
 	 */
-	public List<AgencyDto>  findAllAgency();
+	@Arguments({"agencyName","agencyCity"})
+	public List<AgencyDto> findByAgencyNameAndCity(String agencyName,String agencyCity);
 
 }

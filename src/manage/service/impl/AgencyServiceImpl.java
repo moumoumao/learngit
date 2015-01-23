@@ -23,13 +23,7 @@ public class AgencyServiceImpl implements AgencyService {
 
 	public List<AgencyDto> findAllAgency() {
 		//查找所有机构
-		List<AgencyDto> agencyList = agencyDao.findAllAgency();
-		for(AgencyDto agency : agencyList){
-			//查找每个机构对应的部门信息
-			List<GroupDto> groupList = groupDao.findByAgencyId(agency.getAgencyId());
-			agency.setGroupList(groupList);
-		}
-		return agencyList;
+		return agencyDao.findByAgencyNameAndCity("", "");
 	}
 
 	public int addAgency(AgencyDto dto) {
@@ -55,19 +49,13 @@ public class AgencyServiceImpl implements AgencyService {
 		return agencyDao.deleteAgency(agencyId);
 	}
 
-	public AgencyDto findByAgencyId(int agencyId) {
-		AgencyDto agency = null;
-		//查找对应机构Id的部门列表
-		List<GroupDto> groupList = groupDao.findByAgencyId(agencyId);
-		if(groupList.size() != 0){
-			agency = new AgencyDto();
-			agency.setGroupList(groupList);
-		}
-		return agency;
-	}
 
 	public List<GroupDto> findGroupByAgency(int agencyId) {
-		return groupDao.findByAgencyId(agencyId);
+		return groupDao.findByAgencyIdAndGroupName(agencyId,"");
+	}
+
+	public List<AgencyDto> findByAgencyNameAndCity(String agencyName, String agencyCity) {
+		return agencyDao.findByAgencyNameAndCity(agencyName, agencyCity);
 	}
 
 }

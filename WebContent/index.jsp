@@ -106,7 +106,7 @@ function addTab(t,url){
     <!-- 票证管理 -->
      <div data-options="title:'票证管理 ',iconCls:'icon-cus-limit'">
            		 <ul>
-                    <li><a href="javascript:addTab('票证发放','')">票证发放</a> </li>
+                    <li><a href="javascript:addTab('票证发放','/JinmengWeb22/manage/grantTicket.jsp')">票证发放</a> </li>
                     <li><a href="javascript:addTab('票证查询','')">票证查询</a> </li>
                 </ul>  
         </div> 

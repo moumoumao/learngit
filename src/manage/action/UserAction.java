@@ -4,9 +4,13 @@
 package manage.action;
 
 
+import java.security.acl.Group;
+
 import com.opensymphony.xwork2.ActionContext;
 
 import manage.dto.M00101Dto;
+import manage.service.AgencyService;
+import manage.service.GroupService;
 import manage.service.UserService;
 import manage.util.AbstractAction;
 import manage.util.Json;
@@ -18,9 +22,13 @@ import manage.util.Json;
 public class UserAction extends AbstractAction {
 	private M00101Dto m00101Dto;
 	private UserService userService;
+	private AgencyService  agencyService;
+	private GroupService groupService;
 	
-	public UserAction(UserService userService){
+	public UserAction(UserService userService,AgencyService  agencyService,GroupService groupService){
 		this.userService = userService;
+		this.agencyService = agencyService;
+		this.groupService = groupService;
 	}
 	
 	/**
@@ -39,6 +47,8 @@ public class UserAction extends AbstractAction {
 		}else{
 			json.setSuccess(true);
 			ActionContext.getContext().getSession().put("userSession", user);
+			ActionContext.getContext().getSession().put("agencySession", agencyService.findAllAgency());
+			ActionContext.getContext().getSession().put("groupSession", groupService.findByGroupName(user.getAgencyId(), ""));
 		}
 		super.writeJson(json);
 		

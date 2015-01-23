@@ -18,7 +18,7 @@ margin-top: 30px;
 $(function(){
 	$('#addGroup').hide();
 	$('#agencyList').datagrid({    
-	    url:'/JinmengWeb22/agency!findAllAgency.action',  
+	    url:'/JinmengWeb22/agency!findAgencyByNameAndCity.action',  
 	    singleSelect:true, 
 	    width:500,
 	    columns:[[    
@@ -26,9 +26,7 @@ $(function(){
 	        {field:'agencyName',title:'名称',align:'center',width:170,editor:'text'},    
 	        {field:'agencyCity',title:'城市',align:'center',width:100,editor:'text'},
 			{field:'opt',title:'操作',align:'center',width:100,formatter:function(val,row,idx){
-				var abc="test";
-				var ret="<input type='button' value='删除' onclick='delAgency()'/>";
-				eval("alert('xxx')");
+				var ret="<input type='button' value='删除' onclick='delAgency("+row.agencyId+",\""+row.agencyName+"\")'/>";
 				return ret;
 			}
 			}
@@ -54,7 +52,6 @@ $(function(){
 		    		 success:function(data){
 		    			$.messager.alert('结果',data.pageData); 
 			        	if(data.success){
-			        		//$('#agencyList').datagrid('reload');
 			        		window.location.reload();
 			        	}
 		    		 }
@@ -62,7 +59,8 @@ $(function(){
 		    }},
 		    {    
 			   iconCls:'icon-search',    
-			   handler:function(){alert('save')}    
+			   handler:function(){
+				   $('#agencyList').datagrid('load',{'agencyDto.agencyName':$('#agencyName').val(),'agencyDto.agencyCity':$('#agencyCity').val()});}    
 			  }]    
 	}); 
 });
@@ -73,7 +71,7 @@ function groupForAgency(index,row){
 	$('#nowId').val(row.agencyId);
 	$('#groupList').datagrid({  
 		title:row.agencyName,
-	    url:'/JinmengWeb22/agency!findGroupByAgency.action?agencyDto.agencyId='+row.agencyId,  
+	    url:'/JinmengWeb22/agency!getGroup.action?groupDto.agencyId='+row.agencyId,  
 	    singleSelect:true, 
 	    align:'right',
 	    columns:[[    
@@ -85,7 +83,7 @@ function groupForAgency(index,row){
 	        	return val;
 	        }},
 			{field:'opt',title:'操作',align:'center',width:130,formatter:function(val,row,idx){
-				var ret="<input type='button' value='详情' onclick='detail("+row+")'/><input type='button' value='删除' onclick='del()'/>";
+				var ret="<input type='button' value='删除' onclick='delGroup("+row.groupId+",\""+row.groupName+"\")'/>";
 				return ret;
 			}
 			}
@@ -103,25 +101,61 @@ function addGroupDiv(){
 		  title: '部门',    
 		  tools: [{    
 		    iconCls:'icon-add',    
-		    handler:function(){alert('save')}    
+		    handler:function(){
+		    	$.ajax({async : false,type : "POST",dataType : 'JSON',
+		    		 url:'/JinmengWeb22/agency!addGroup.action?groupDto.agencyId='+$('#nowId').val(),
+		    		 data:{'groupDto.groupName':$('#groupName').val()},
+		    		 success:function(data){
+		    			$.messager.alert('结果',data.pageData); 
+			        	if(data.success){
+			        		$('#groupList').datagrid('reload');
+			        	}
+		    		 }
+		    	 });
+		    }    
 		  },{    
 			    iconCls:'icon-search',    
-			    handler:function(){alert('save')}    
+			    handler:function(){ 
+			    	$('#groupList').datagrid('load',{'groupDto.groupName':$('#groupName').val()});}    
 			  }]    
 	}); 
 }
 /**
  * 删除机构 （根据Id删除）
  */
-function delAgency(row){
-	alert('123');
-	$.messager.confirm('确认','您确认想要删除'+row.agencyName+'及其相关部门？',function(r){    
-	    if (r){    
-	        alert('确认删除');    
-	    }    
+function delAgency(agencyId,agencyName){
+	$.messager.confirm('确认','您确认想要删除 \''+agencyName+'\'机构 及其相关部门信息？',function(r){    
+	    if (r){   
+	    	$.ajax({async:false,type:"POST",dataType:"JSON",
+	    		url:'/JinmengWeb22/agency!deleteAgency?agencyDto.agencyId='+agencyId,
+	    		success:function(data){
+	    			$.messager.alert('结果',data.pageData); 
+		        	if(data.success){
+		        		window.location.reload();
+		        	}
+	    		}
+	    	});
+	    } 
 	});
 }
- 
+/**
+ * 删除部门 （根据Id删除）
+ */
+function delGroup(groupId,groupName){
+	$.messager.confirm('确认','您确认想要删除 \''+groupName+'\'机构 及其部门下的人员信息？',function(r){    
+	    if (r){   
+	    	$.ajax({async:false,type:"POST",dataType:"JSON",
+	    		url:'/JinmengWeb22/agency!deleteGroup?groupDto.groupId='+groupId,
+	    		success:function(data){
+	    			$.messager.alert('结果',data.pageData); 
+		        	if(data.success){
+		        		window.location.reload();
+		        	}
+	    		}
+	    	});
+	    } 
+	});
+}
 </script>
 </head>
 <body class="easyui-layout">
@@ -150,7 +184,7 @@ function delAgency(row){
 	    	<br>
 	    		<table align="center">
 	    			<tr>
-		    			<td>部门名称：</td><td><input type="text" id="agencyName"> </td>
+		    			<td>部门名称：</td><td><input type="text" id="groupName"> </td>
 	    			</tr>
 	    		</table>
 	    	</div>

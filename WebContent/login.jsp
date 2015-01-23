@@ -9,13 +9,9 @@
 <link rel="stylesheet" href="/JinmengWeb22/css/login.css" type="text/css"></link>
 <title>登录</title>
 <script type="text/javascript">
-$(function(){
-	alert('123');
-});
 function formSubmit(){
 	var name=$('#name').val();
 	var pwd=$('#pwd').val();
-	
 	if(name!=''&&pwd!=''){
 		$.ajax({
 			async : false,
@@ -31,6 +27,8 @@ function formSubmit(){
 	    		}
 			}
 		});
+	}else{
+		$.messager.alert('提示','用户名和密码不能为空！'); 
 	}
 
 }

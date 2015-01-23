@@ -72,3 +72,9 @@ a{
 		right:20px;	
 		top:18px;
 	}
+.clsEditCaption {
+    text-align: right;
+    white-space: nowrap;
+    color: #003399;
+    font-size:13px;
+}

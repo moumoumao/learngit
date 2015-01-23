@@ -38,13 +38,12 @@ public interface GroupDao {
 	@Arguments({"groupId"})
 	public int deleteGroup(int groupId);
 	/**
-	 * 根据机构Id查找部门
+	 * 根据机构Id或者部门名称查找部门
 	 * @param agencyId
+	 * @param groupName
 	 * @return
 	 */
 	@SqlFile
-	@Arguments({"agencyId"})
-	public List<GroupDto> findByAgencyId(int agencyId);
-	
-
+	@Arguments({"agencyId","groupName"})
+	public List<GroupDto> findByAgencyIdAndGroupName(int agencyId, String groupName);
 }

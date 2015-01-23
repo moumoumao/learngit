@@ -11,7 +11,6 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 	public M00101Dto findByName(String name) {
-		// TODO Auto-generated method stub
 		return userDao.findByName(name);
 	}
 

@@ -36,15 +36,16 @@ public interface AgencyService {
 	 */
 	public int deleteAgencyById(int agencyId);
 	/**
-	 * 根据机构Id查找机构
-	 * @param agencyId
-	 * @return
-	 */
-	public AgencyDto findByAgencyId(int agencyId);
-	/**
 	 * 根据机构Id 查找相关部门信息
 	 * @param agencyId
 	 * @return
 	 */
 	public List<GroupDto> findGroupByAgency(int agencyId);
+	/**
+	 * 根据机构名和机构城市查找部门（模糊查询，组合查询）
+	 * @param agencyName 机构名称
+	 * @param agencyCity 机构城市
+	 * @return
+	 */
+	public List<AgencyDto>  findByAgencyNameAndCity(String agencyName,String agencyCity);
 }
