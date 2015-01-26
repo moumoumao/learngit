@@ -10,6 +10,8 @@ public class TicketDto {
 	private String ticketType;//票证类型
 	private String ticketUser;//票证使用人
 	private Date ticketDate;//发放日期
+	private Date ticketDateStart;//发放开始日期
+	private Date ticketDateEnd;//发放结束日期
 	private int agencyId;//机构名
 	private int groupId;//部门名
 	private int ticketCount;//总数量
@@ -139,5 +141,18 @@ public class TicketDto {
 	public void setWaybillType(int waybillType) {
 		this.waybillType = waybillType;
 	}
+	public Date getTicketDateStart() {
+		return ticketDateStart;
+	}
+	public void setTicketDateStart(Date ticketDateStart) {
+		this.ticketDateStart = ticketDateStart;
+	}
+	public Date getTicketDateEnd() {
+		return ticketDateEnd;
+	}
+	public void setTicketDateEnd(Date ticketDateEnd) {
+		this.ticketDateEnd = ticketDateEnd;
+	}
+	
 	
 }
